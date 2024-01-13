@@ -18,6 +18,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   std_srvs
   tf
+  message_generation
 )
 
 ## System dependencies are found with CMake's conventions
@@ -54,17 +55,17 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   msg.msg
-# )
+ add_message_files(
+   FILES
+   msg.msg
+ )
 
 ## Generate services in the 'srv' folder
-# add_service_files(
-#   FILES
-#   average.srv
-#   Input.srv
-# )
+ add_service_files(
+   FILES
+   Input.srv
+   average.srv
+ )
 
 ## Generate actions in the 'action' folder
  add_action_files(
@@ -77,6 +78,8 @@ find_package(catkin REQUIRED COMPONENTS
    DEPENDENCIES
    actionlib_msgs
    geometry_msgs
+   std_msgs
+   
  )
 
 ################################################
