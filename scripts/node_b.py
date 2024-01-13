@@ -1,70 +1,43 @@
 #!/usr/bin/env python3
 
-# Importing necessary ROS libraries
 import rospy
+from assignment_2_2023.msg import Vel
 from assignment_2_2023.srv import Input, InputResponse
 
-def read_target_positions():
-    """
-    Reads the last target positions from ROS parameters.
+# Define a class for the service
+class LastTargetService:
+    def __init__(self):
+        # Initialize class variables for the last desired x and y positions
+        self.last_des_x = 0
+        self.last_des_y = 0
 
-    Returns:
-        tuple: A tuple containing the x and y coordinates of the last target position.
-    """
-    # Retrieve the last target positions from ROS parameters, default to 0 if not set
-    last_target_pos_x = rospy.get_param('/des_pos_x', 0)
-    last_target_pos_y = rospy.get_param('/des_pos_y', 0)
-    return last_target_pos_x, last_target_pos_y
+        # Initialize the node with the name 'last_target_service'
+        rospy.init_node('last_target_service')
+        rospy.loginfo("Last target node initialized")
 
-def create_service_response(last_target_pos_x, last_target_pos_y):
-    """
-    Creates a service response message with the last target positions.
+        # Provide a service named 'input', using the custom service type Input
+        rospy.Service('input', Input, self.result_callback)
 
-    Args:
-        last_target_pos_x (float): The last target x-coordinate.
-        last_target_pos_y (float): The last target y-coordinate.
+    # Callback function for the service
+    def result_callback(self, _):
+        # Create a response message
+        response = InputResponse()
+        # Set the x and y inputs in the response to the last desired positions
+        self.last_des_x = rospy.get_param('/des_pos_x')
+        self.last_des_y = rospy.get_param('/des_pos_y')
+        response.input_x = self.last_des_x
+        response.input_y = self.last_des_y
 
-    Returns:
-        InputResponse: The service response message.
-    """
-    # Create an InputResponse message and assign the target positions
-    response = InputResponse()
-    response.inputx = last_target_pos_x
-    response.inputy = last_target_pos_y
-    return response
+        # Return the response
+        return response
 
-def handle_service_request(_):
-    """
-    Handles incoming service requests.
+    # Function to keep the node running
+    def spin(self):
+        rospy.spin()
 
-    Args:
-        _: Unused parameter for service request data.
-
-    Returns:
-        InputResponse: The service response message.
-    """
-    # Read the last target positions and create a response
-    last_target_pos_x, last_target_pos_y = read_target_positions()
-    return create_service_response(last_target_pos_x, last_target_pos_y)
-
-def initialize_service():
-    """
-    Initializes and starts the ROS service.
-    """
-    # Define the 'input' service with the Input service type and request handler
-    rospy.Service('input', Input, handle_service_request)
-    rospy.loginfo("Service 'input' is ready to provide last target positions.")
-
-def main():
-    """
-    Main function to initialize the node and start the service.
-    """
-    # Initialize the ROS node
-    rospy.init_node('last_target_service')
-    # Initialize and run the service
-    initialize_service()
-    # Keep the node running
-    rospy.spin()
-
+# Main function
 if __name__ == "__main__":
-    main()
+    # Create an instance of the service class
+    service = LastTargetService()
+    # Start the node
+    service.spin()
