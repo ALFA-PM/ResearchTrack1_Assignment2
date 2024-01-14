@@ -1,5 +1,8 @@
 #!/bin/bash
 
+cd ..
+cd ..
+
 # Check if the current directory contains a Catkin workspace
 if [ ! -f "src/CMakeLists.txt" ]; then
     echo "This script must be run from the root of a Catkin workspace"
