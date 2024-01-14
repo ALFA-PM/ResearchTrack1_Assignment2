@@ -11,6 +11,8 @@ This repository contains three ROS (Robot Operating System) nodes written in Pyt
 
 ### Purpose
 Handles goals for a robot in a ROS environment, interacting with an action server to manage goals based on user input.
+![flowchart1](https://github.com/ALFA-PM/assignment_2_2023/assets/147394202/de1f74f5-9f73-415a-bcf1-bdc8f39249cc)
+>Figure1) The Flowchart
 
 ### Key Features
 - Initializes ROS publisher and action client.
