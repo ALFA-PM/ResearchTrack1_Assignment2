@@ -64,15 +64,5 @@ Monitors distance from a set goal and average velocity, providing information vi
 1. Source ROS environment: `source devel/setup.bash`
 2. Run nodes: `rosrun [package_name] [node_name.py]`
 
-## License
-[MIT License](LICENSE)
-
-## Contributing
-Contributions, issues, and feature requests are welcome. Please refer to [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
-## Authors & Acknowledgment
-- [Your Name](https://github.com/yourprofile)
-- Thanks to contributors and ROS community.
-
 ## Contact
-For any queries, reach out to [email@example.com](mailto:email@example.com).
+For any queries, reach out to [mahnazmohammadkarimi@gmail.com].
