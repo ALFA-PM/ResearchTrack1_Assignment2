@@ -61,6 +61,21 @@ Monitors distance from a set goal and average velocity, providing information vi
 - Build with `catkin_make`.
 
 ## Running the Nodes
+You have to open your terminal inside the scripts folder and run these commands bellow to make your programms executable:
+
+`chmod +x node_a.py`
+`chmod +x node_b.py`
+`chmod +x node_c.py`
+`chmod +x bug_as.py`
+`chmod +x go_to_point_service.py`
+`chmod +x  wall_follow_service.py`
+
+if any error met during this process you can run the command `sudo apt-get install xterm` before you run them again, this command will install xterm for you.
+
+open a new terminal in the directory where your launch.sh program is located and use these two commands to launch the hole assignment 
+`chmod +x launch.sh`
+`./launch.sh`
+
 1. Source ROS environment: `source devel/setup.bash`
 2. Run nodes: `rosrun [package_name] [node_name.py]`
 
