@@ -23,8 +23,8 @@ class LastTargetService:
         # Create a response message
         response = InputResponse()
         # Set the x and y inputs in the response to the last desired positions
-        self.last_des_x = rospy.get_param('/des_pos_x')
-        self.last_des_y = rospy.get_param('/des_pos_y')
+        self.last_des_x = rospy.get_param('/des_position_x')
+        self.last_des_y = rospy.get_param('/des_position_y')
         response.input_x = self.last_des_x
         response.input_y = self.last_des_y
 

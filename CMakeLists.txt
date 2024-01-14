@@ -64,7 +64,7 @@ find_package(catkin REQUIRED COMPONENTS
  add_service_files(
    FILES
    Input.srv
-   Ave_pos_vel.srv
+   average.srv
  )
 
 ## Generate actions in the 'action' folder

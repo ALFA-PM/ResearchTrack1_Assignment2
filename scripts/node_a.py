@@ -16,7 +16,7 @@ from actionlib_msgs.msg import GoalStatus
 class GoalHandler:
     def __init__(self):
         # Initialize publisher and action client
-        self.pub = rospy.Publisher("/pos_vel", Vel, queue_size=1)
+        self.pub = rospy.Publisher("/position_vel", Vel, queue_size=1)
         self.client = actionlib.SimpleActionClient('/reaching_goal', assignment_2_2023.msg.PlanningAction)
         self.client.wait_for_server()
         self.goal_cancelled = True  # Flag to track if the current goal has been cancelled
@@ -44,8 +44,8 @@ class GoalHandler:
         return input_x, input_y
 
     def update_goal_parameters(self, input_x, input_y,goal):
-        rospy.set_param('/des_pos_x', input_x)
-        rospy.set_param('/des_pos_y', input_y)
+        rospy.set_param('/des_position_x', input_x)
+        rospy.set_param('/des_position_y', input_y)
         goal.target_pose.pose.position.x = input_x
         goal.target_pose.pose.position.y = input_y
 
@@ -69,22 +69,22 @@ class GoalHandler:
             # Get user command
             command = input("Press 'y' to set a new goal or 'c' to cancel the current goal: ")
             # Get current target position
-            target_pos_x = rospy.get_param('/des_pos_x')
-            target_pos_y = rospy.get_param('/des_pos_y')
+            target_position_x = rospy.get_param('/des_position_x')
+            target_position_y = rospy.get_param('/des_position_y')
 
             # Create a new goal with the current target position
             goal = assignment_2_2023.msg.PlanningGoal()
-            goal.target_pose.pose.position.x = target_pos_x
-            goal.target_pose.pose.position.y = target_pos_y
-            rospy.loginfo("Current goal: target_x = %f, target_y = %f", target_pos_x, target_pos_y)
+            goal.target_pose.pose.position.x = target_position_x
+            goal.target_pose.pose.position.y = target_position_y
+            rospy.loginfo("Current goal: target_x = %f, target_y = %f", target_position_x, target_position_y)
             self.handle_command(command,goal)
 
             rospy.loginfo("Last received goal: target_x = %f, target_y = %f", goal.target_pose.pose.position.x, goal.target_pose.pose.position.y)
 
     def publish_position_velocity(self, msg):
         position_and_velocity = Vel()
-        position_and_velocity.pos_x = msg.pose.pose.position.x
-        position_and_velocity.pos_y = msg.pose.pose.position.y
+        position_and_velocity.position_x = msg.pose.pose.position.x
+        position_and_velocity.position_y = msg.pose.pose.position.y
         position_and_velocity.vel_x = msg.twist.twist.linear.x
         position_and_velocity.vel_z = msg.twist.twist.angular.z
 
