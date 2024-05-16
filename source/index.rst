@@ -23,17 +23,17 @@ assignment_2_2023-main's documentation!
 ****************************************
 This is the documentation of the assignment_2_2023-main package!
 
-**assignment_2_2023-main Modules (Node_a)**
+**Action Client**
 ==============================================
-.. automodule:: scripts.node_a
+.. automodule:: scripts.action_client
   :members:
   
-**assignment_2_2023-main Modules (Node_b)**
+**Last Target Service**
 ===============================================
-.. automodule:: scripts.node_b
+.. automodule:: scripts.last_target_service
    :members:
   
-**assignment_2_2023-main Modules (Node_c)**
+**Average Service**
 ===============================================
-.. automodule:: scripts.node_c
+.. automodule:: scripts.avg_service
    :members:
